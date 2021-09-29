@@ -9,13 +9,11 @@
  *
  *****************************************************************************/
 /**
- * @file <Add File Name> 
- * @brief <Add Brief Description Here >
+ * @file stats.c
+ * @brief Performs analysis on given data set
  *
- * <Add Extended Description Here>
- *
- * @author <Add FirsName LastName>
- * @date <Add date >
+ * @author Jithendra H.S
+ * @date Sept 29, 2021
  *
  */
 
@@ -41,3 +39,30 @@ void main() {
 }
 
 /* Add other Implementation File Code Here */
+void print_statistics(unsigned char array[], unsigned int array_size){
+
+}
+
+void print_array(unsigned char array[], unsigned int array_size){
+
+}
+
+unsigned char find_median(unsigned char array[], unsigned int array_size){
+
+}
+
+unsigned char find_mean(unsigned char array[], unsigned int array_size){
+
+}
+
+unsigned char find_maximum(unsigned char array[], unsigned int array_size){
+
+}
+
+unsigned char find_minimum(unsigned char array[], unsigned int array_size){
+
+}
+
+unsigned char sort_array(unsigned char array[], unsigned int array_size){
+
+}

@@ -9,32 +9,86 @@
  *
  *****************************************************************************/
 /**
- * @file <Add File Name> 
- * @brief <Add Brief Description Here >
+ * @file stats.h
+ * @brief Performs analysis on given data set
  *
- * <Add Extended Description Here>
- *
- * @author <Add FirsName LastName>
- * @date <Add date >
+ * @author Jithendra H.S
+ * @date Sept 29, 2021
  *
  */
 #ifndef __STATS_H__
 #define __STATS_H__
 
-/* Add Your Declarations and Function Comments here */ 
 
 /**
- * @brief <Add Brief Description of Function Here>
+ * @brief Prints the statistics of an array including minimum, maximum,
+ *        mean and median
  *
- * <Add Extended Description Here>
+ * @param array Array of data consider for analysis
+ * @param array_size Size of the data array
  *
- * @param <Add InputName> <add description here>
- * @param <Add InputName> <add description here>
- * @param <Add InputName> <add description here>
- * @param <Add InputName> <add description here>
- *
- * @return <Add Return Informaiton here>
+ * @return NULL
  */
+void print_statistics(unsigned char array[], unsigned int array_size);
 
+/**
+ * @brief Prints the given array elements
+ *
+ * @param array Array of data consider for analysis
+ * @param array_size Size of the data array
+ *
+ * @return NULL
+ */
+void print_array(unsigned char array[], unsigned int array_size);
+
+/**
+ * @brief Find the median for array of data
+ *
+ * @param array Array of data consider for analysis
+ * @param array_size Size of the data array
+ *
+ * @return median Median value from the array data
+ */
+unsigned char find_median(unsigned char array[], unsigned int array_size);
+
+/**
+ * @brief Find the mean for array of data
+ *
+ * @param array Array of data consider for analysis
+ * @param array_size Size of the data array
+ *
+ * @return mean Mean value from the array data
+ */
+unsigned char find_mean(unsigned char array[], unsigned int array_size);
+
+/**
+ * @brief Find the maximum value present in array of data
+ *
+ * @param array Array of data consider for analysis
+ * @param array_size Size of the data array
+ *
+ * @return maximum Maximum value in array data
+ */
+unsigned char find_maximum(unsigned char array[], unsigned int array_size);
+
+/**
+ * @brief Find the minimun value present in array of data
+ *
+ * @param array Array of data consider for analysis
+ * @param array_size Size of the data array
+ *
+ * @return minimum Minimum value in array data
+ */
+unsigned char find_minimum(unsigned char array[], unsigned int array_size);
+
+/**
+ * @brief Sort the array of data from higher to lower
+ *
+ * @param array Array of data consider for analysis
+ * @param array_size Size of the data array
+ *
+ * @return array Sorted array
+ */
+unsigned char sort_array(unsigned char array[], unsigned int array_size);
 
 #endif /* __STATS_H__ */
