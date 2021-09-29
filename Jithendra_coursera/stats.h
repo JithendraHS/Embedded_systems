@@ -89,6 +89,6 @@ unsigned char find_minimum(unsigned char array[], unsigned int array_size);
  *
  * @return array Sorted array
  */
-unsigned char sort_array(unsigned char array[], unsigned int array_size);
+void sort_array(unsigned char array[], unsigned int array_size);
 
 #endif /* __STATS_H__ */
