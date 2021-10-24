@@ -19,6 +19,10 @@
  * @date April 1 2017
  *
  */
+
+#include <stdint.h>
+#include <stddef.h>
+#include <stdlib.h>
 #ifndef __MEMORY_H__
 #define __MEMORY_H__
 
@@ -89,5 +93,98 @@ void set_all(char * ptr, char value, unsigned int size);
  * @return void.
  */
 void clear_all(char * ptr, unsigned int size);
+
+/**
+ * @brief Move data from source mem address to dest mem address
+ *
+ * The behavior should handle overlap of source and destination. 
+ * Copy should occur, with no data corruption. 
+ *
+ * @param src  Pointer to the source mem address
+ * @param dst  Pointer to the destination mem address
+ * @param length size of the mem data under move
+ *
+ * @return pointer to the destination address
+ */
+uint8_t * my_memmove(uint8_t * src, uint8_t * dst, size_t length);
+
+/**
+ * @brief Copy data from source mem address to dest mem address
+ *
+ * The behavior should handle overlap of source and destination.
+ * Copy should occur, with no data corruption.
+ *
+ * @param src  Pointer to the source mem address
+ * @param dst  Pointer to the destination mem address
+ * @param length size of the mem data under copy
+ *
+ * @return pointer to the destination address
+ */
+uint8_t * my_memcopy(uint8_t * src, uint8_t * dst, size_t length);
+
+
+/**
+ * @brief Set all locations of given length memory to a given value.
+ * 
+ * The behavior should handle overlap of source.
+ * Copy should occur, with no data corruption.
+ *
+ * @param src  Pointer to the source mem address
+ * @param length size of the mem data under set
+ * @param value The value to be assign to the memory
+ *
+ * @return pointer to the source address
+ */
+uint8_t * my_memset(uint8_t * src, size_t length, uint8_t value);
+
+/**
+ * @brief Set all locations of given length memory to a zero.
+ *
+ * The behavior should handle overlap of source.
+ * Copy should occur, with no data corruption.
+ *
+ * @param src  Pointer to the source mem address
+ * @param length size of the mem data under set
+ *
+ * @return pointer to the source address
+ */
+uint8_t * my_memzero(uint8_t * src, size_t length);
+
+/**
+ * @brief Reverse the order of all bytes
+ *
+ * The behavior should handle overlap of source.
+ * Copy should occur, with no data corruption.
+ *
+ * @param src  Pointer to the source addresss
+ * @param length size of the mem data under reverse process
+ *
+ * @return pointer to the source address
+ */
+uint8_t * my_reverse(uint8_t * src, size_t length);
+
+/**
+ * @brief Reserve memory of given length
+ *
+ * The behavior should handle overlap of source.
+ * Copy should occur, with no data corruption.
+ *
+ * @param length size of the mem need to reserve
+ * 
+ * @return pointer to memory allocated
+ */
+int32_t * reserve_words(size_t length);
+
+/**
+ * @brief Reset the memory
+ *
+ * The behavior should handle overlap of source.
+ * Copy should occur, with no data corruption.
+ *
+ * @param src Pointer to the source address
+ *
+ * @return NULL
+ */
+void free_words(uint32_t * src);
 
 #endif /* __MEMORY_H__ */

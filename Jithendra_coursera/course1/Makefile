@@ -25,6 +25,8 @@
 #
 # Platform Overrides:
 #      PLATFORM = platform on which final executable file going to run
+#      COURSE = Select course to run functions under course1.c file
+#      VERBOSE = Flag used to enable print_array function to print array elements
 #
 #------------------------------------------------------------------------------
 include sources.mk
@@ -37,16 +39,26 @@ SPECS = nosys.specs
 
 # Platform Overrides
 PLATFORM = HOST
+COURSE = NOT_COURSE1
+VERBOSE = DISABLE
+
 ifeq ($(PLATFORM),HOST)
   CC = gcc
   CFLAGS = -Wall -Werror -g -O0 -std=c99 $(INCLUDES) -o $@ $^ -DHOST
-  OBJS = main.o memory.o
-  DEPS = main.d memory.d
+  OBJS = main.o memory.o stats.o course1.o data.o
+  DEPS = main.d memory.d stats.d course1.d data.d
 else
   CC = arm-none-eabi-gcc
   CFLAGS = -mcpu=$(CPU) -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -march=$(ARCH) --specs=$(SPECS) -Wall -Werror -g -O0 -std=c99 $(INCLUDES) -o $@ $^ -DMSP432
   OBJS = $(SOURCES:.c=.o)
   DEPS = $(SOURCES:.c=.d)
+endif
+
+ifeq ($(COURSE), COURSE1)
+  CFLAGS += -DCOURSE1
+endif
+ifeq ($(VERBOSE),ENABLE)
+  CFLAGS += -DVERBOSE
 endif
 
 # Compiler Flags and Defines
@@ -55,19 +67,19 @@ LDFLAGS = -Wl,-Map=$(TARGET).map -T ../$(LINKER_FILE)
 TARGET = c1m2
 CPPFLAGS = -E
 
-%.i : %.c
+%.i : src/%.c
 	$(CC) $(CPPFLAGS) $(CFLAGS)
 	@echo --created preprocessor file $@--
 
-%.asm : %.c
+%.asm : src/%.c
 	$(CC) -S $(CFLAGS)
 	@echo --created assembly file $@--
 
-%.o : %.c
+%.o : src/%.c
 	$(CC) -c $(CFLAGS)
 	@echo --created object file $@--
 
-%.d : %.c
+%.d : src/%.c
 	$(CC) -M $^ $(CFLAGS)
 	@echo -- created dependency file $@--
 
