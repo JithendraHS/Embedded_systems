@@ -45,13 +45,13 @@ VERBOSE = DISABLE
 ifeq ($(PLATFORM),HOST)
   CC = gcc
   CFLAGS = -Wall -Werror -g -O0 -std=c99 $(INCLUDES) -o $@ $^ -DHOST
-  OBJS = main.o memory.o stats.o course1.o data.o
-  DEPS = main.d memory.d stats.d course1.d data.d
+  OBJS =  main.o memory.o data.o course1.o stats.o
+  DEPS =  main.d memory.d data.d course1.d stats.d
 else
   CC = arm-none-eabi-gcc
   CFLAGS = -mcpu=$(CPU) -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -march=$(ARCH) --specs=$(SPECS) -Wall -Werror -g -O0 -std=c99 $(INCLUDES) -o $@ $^ -DMSP432
-  OBJS = $(SOURCES:.c=.o)
-  DEPS = $(SOURCES:.c=.d)
+  OBJS = main.d memory.o data.o course1.o stats.o interrupts_msp432p401r_gcc.o startup_msp432p401r_gcc.o system_msp432p401r.o
+  DEPS = main.d memory.d data.d course1.d stats.d interrupts_msp432p401r_gcc.d startup_msp432p401r_gcc.d system_msp432p401r.d
 endif
 
 ifeq ($(COURSE), COURSE1)
@@ -63,7 +63,7 @@ endif
 
 # Compiler Flags and Defines
 LD = arm-none-eabi-ld
-LDFLAGS = -Wl,-Map=$(TARGET).map -T ../$(LINKER_FILE)
+LDFLAGS = -Wl,-Map=$(TARGET).map -T $(LINKER_FILE)
 TARGET = c1m2
 CPPFLAGS = -E
 
